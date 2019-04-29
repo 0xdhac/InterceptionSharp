@@ -1,5 +1,5 @@
 # InterceptionSharp
-C# Library for the Interception driver by @oblitum
+C# Library for the Interception driver by [oblitum](https://github.com/oblitum)
 
 ## Using
 1. Install the Interception driver here https://github.com/oblitum/Interception
