@@ -26,8 +26,7 @@ Interception.interception_set_filter(
 
 while (Interception.interception_receive(context, device = Interception.interception_wait(context), ref stroke, 1) > 0)
 {
-  byte[] strokeBytes = Interception.getBytes(stroke);
-  Interception.InterceptionKeyStroke kstroke = Interception.ByteArrayToStructure<Interception.InterceptionKeyStroke>(strokeBytes);
+  Interception.InterceptionKeyStroke kstroke = stroke;
   if (kstroke.code == (ushort)ScanCode.SCANCODE_X)
   {
     kstroke.code = (ushort)ScanCode.SCANCODE_Y;
