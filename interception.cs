@@ -7,96 +7,96 @@ public class Interception
 	public const short INTERCEPTION_MAX_MOUSE = 10;
 	public const short INTERCEPTION_MAX_DEVICE = (INTERCEPTION_MAX_KEYBOARD + INTERCEPTION_MAX_MOUSE);
 
-	public enum InterceptionKeyState
+	public enum KeyState : ushort
 	{
-		INTERCEPTION_KEY_DOWN = 0x00,
-		INTERCEPTION_KEY_UP = 0x01,
-		INTERCEPTION_KEY_E0 = 0x02,
-		INTERCEPTION_KEY_E1 = 0x04,
-		INTERCEPTION_KEY_TERMSRV_SET_LED = 0x08,
-		INTERCEPTION_KEY_TERMSRV_SHADOW = 0x10,
-		INTERCEPTION_KEY_TERMSRV_VKPACKET = 0x20
+		KeyDown = 0x00,
+		KeyUp = 0x01,
+		E0 = 0x02,
+		E1 = 0x04,
+		SetLed = 0x08,
+		TermSrv_Shadow = 0x10,
+		TermSrv_VkPacket = 0x20
 	};
 
-	public enum InterceptionFilterKeyState
+	public enum FilterKeyState : ushort
 	{
-		INTERCEPTION_FILTER_KEY_NONE = 0x0000,
-		INTERCEPTION_FILTER_KEY_ALL = 0xFFFF,
-		INTERCEPTION_FILTER_KEY_DOWN = InterceptionKeyState.INTERCEPTION_KEY_UP,
-		INTERCEPTION_FILTER_KEY_UP = InterceptionKeyState.INTERCEPTION_KEY_UP << 1,
-		INTERCEPTION_FILTER_KEY_E0 = InterceptionKeyState.INTERCEPTION_KEY_E0 << 1,
-		INTERCEPTION_FILTER_KEY_E1 = InterceptionKeyState.INTERCEPTION_KEY_E1 << 1,
-		INTERCEPTION_FILTER_KEY_TERMSRV_SET_LED = InterceptionKeyState.INTERCEPTION_KEY_TERMSRV_SET_LED << 1,
-		INTERCEPTION_FILTER_KEY_TERMSRV_SHADOW = InterceptionKeyState.INTERCEPTION_KEY_TERMSRV_SHADOW << 1,
-		INTERCEPTION_FILTER_KEY_TERMSRV_VKPACKET = InterceptionKeyState.INTERCEPTION_KEY_TERMSRV_VKPACKET << 1
+		None = 0x0000,
+		All = 0xFFFF,
+		KeyDown = KeyState.KeyUp,
+		KeyUp = KeyState.KeyUp << 1,
+		E0 = KeyState.E0 << 1,
+		E1 = KeyState.E1 << 1,
+		SetLed = KeyState.SetLed << 1,
+		TermSrv_Shadow = KeyState.TermSrv_Shadow << 1,
+		TermSrv_VkPacket = KeyState.TermSrv_VkPacket << 1
 	};
 
-	public enum InterceptionMouseState
+	public enum MouseState : ushort
 	{
-		INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN = 0x001,
-		INTERCEPTION_MOUSE_LEFT_BUTTON_UP = 0x002,
-		INTERCEPTION_MOUSE_RIGHT_BUTTON_DOWN = 0x004,
-		INTERCEPTION_MOUSE_RIGHT_BUTTON_UP = 0x008,
-		INTERCEPTION_MOUSE_MIDDLE_BUTTON_DOWN = 0x010,
-		INTERCEPTION_MOUSE_MIDDLE_BUTTON_UP = 0x020,
+		LeftDown = 0x001,
+		LeftUp = 0x002,
+		RightDown = 0x004,
+		RightUp = 0x008,
+		MiddleDown = 0x010,
+		MiddleUp = 0x020,
 
-		INTERCEPTION_MOUSE_BUTTON_1_DOWN = INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN,
-		INTERCEPTION_MOUSE_BUTTON_1_UP = INTERCEPTION_MOUSE_LEFT_BUTTON_UP,
-		INTERCEPTION_MOUSE_BUTTON_2_DOWN = INTERCEPTION_MOUSE_RIGHT_BUTTON_DOWN,
-		INTERCEPTION_MOUSE_BUTTON_2_UP = INTERCEPTION_MOUSE_RIGHT_BUTTON_UP,
-		INTERCEPTION_MOUSE_BUTTON_3_DOWN = INTERCEPTION_MOUSE_MIDDLE_BUTTON_DOWN,
-		INTERCEPTION_MOUSE_BUTTON_3_UP = INTERCEPTION_MOUSE_MIDDLE_BUTTON_UP,
+		Button1Down = LeftDown,
+		Button1Up = LeftUp,
+		Button2Down = RightDown,
+		Button2Up = RightUp,
+		Button3Down = MiddleDown,
+		Button3Up = MiddleUp,
 
-		INTERCEPTION_MOUSE_BUTTON_4_DOWN = 0x040,
-		INTERCEPTION_MOUSE_BUTTON_4_UP = 0x080,
-		INTERCEPTION_MOUSE_BUTTON_5_DOWN = 0x100,
-		INTERCEPTION_MOUSE_BUTTON_5_UP = 0x200,
+		Button4Down = 0x040,
+		Button4Up = 0x080,
+		Button5Down = 0x100,
+		Button5Up = 0x200,
 
-		INTERCEPTION_MOUSE_WHEEL = 0x400,
-		INTERCEPTION_MOUSE_HWHEEL = 0x800
+		MouseWheel = 0x400,
+		MouseHWheel = 0x800
 	};
 
-	public enum InterceptionFilterMouseState
+	public enum FilterMouseState : ushort
 	{
-		INTERCEPTION_FILTER_MOUSE_NONE = 0x0000,
-		INTERCEPTION_FILTER_MOUSE_ALL = 0xFFFF,
+		None = 0x0000,
+		All = 0xFFFF,
 
-		INTERCEPTION_FILTER_MOUSE_LEFT_BUTTON_DOWN = InterceptionMouseState.INTERCEPTION_MOUSE_LEFT_BUTTON_DOWN,
-		INTERCEPTION_FILTER_MOUSE_LEFT_BUTTON_UP = InterceptionMouseState.INTERCEPTION_MOUSE_LEFT_BUTTON_UP,
-		INTERCEPTION_FILTER_MOUSE_RIGHT_BUTTON_DOWN = InterceptionMouseState.INTERCEPTION_MOUSE_RIGHT_BUTTON_DOWN,
-		INTERCEPTION_FILTER_MOUSE_RIGHT_BUTTON_UP = InterceptionMouseState.INTERCEPTION_MOUSE_RIGHT_BUTTON_UP,
-		INTERCEPTION_FILTER_MOUSE_MIDDLE_BUTTON_DOWN = InterceptionMouseState.INTERCEPTION_MOUSE_MIDDLE_BUTTON_DOWN,
-		INTERCEPTION_FILTER_MOUSE_MIDDLE_BUTTON_UP = InterceptionMouseState.INTERCEPTION_MOUSE_MIDDLE_BUTTON_UP,
+		LeftDown = MouseState.LeftDown,
+		LeftUp = MouseState.LeftUp,
+		RightDown = MouseState.RightDown,
+		RightUp = MouseState.RightUp,
+		MiddleDown = MouseState.MiddleDown,
+		MiddleUp = MouseState.MiddleUp,
 
-		INTERCEPTION_FILTER_MOUSE_BUTTON_1_DOWN = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_1_DOWN,
-		INTERCEPTION_FILTER_MOUSE_BUTTON_1_UP = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_1_UP,
-		INTERCEPTION_FILTER_MOUSE_BUTTON_2_DOWN = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_2_DOWN,
-		INTERCEPTION_FILTER_MOUSE_BUTTON_2_UP = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_2_UP,
-		INTERCEPTION_FILTER_MOUSE_BUTTON_3_DOWN = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_3_DOWN,
-		INTERCEPTION_FILTER_MOUSE_BUTTON_3_UP = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_3_UP,
+		Button1Down = MouseState.Button1Down,
+		Button1Up = MouseState.Button1Up,
+		Button2Down = MouseState.Button2Down,
+		Button2Up = MouseState.Button2Up,
+		Button3Down = MouseState.Button3Down,
+		Button3Up = MouseState.Button3Up,
 
-		INTERCEPTION_FILTER_MOUSE_BUTTON_4_DOWN = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_4_DOWN,
-		INTERCEPTION_FILTER_MOUSE_BUTTON_4_UP = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_4_UP,
-		INTERCEPTION_FILTER_MOUSE_BUTTON_5_DOWN = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_5_DOWN,
-		INTERCEPTION_FILTER_MOUSE_BUTTON_5_UP = InterceptionMouseState.INTERCEPTION_MOUSE_BUTTON_5_UP,
+		Button4Down = MouseState.Button4Down,
+		Button4Up = MouseState.Button4Up,
+		Button5Down = MouseState.Button5Down,
+		Button5Up = MouseState.Button5Up,
 
-		INTERCEPTION_FILTER_MOUSE_WHEEL = InterceptionMouseState.INTERCEPTION_MOUSE_WHEEL,
-		INTERCEPTION_FILTER_MOUSE_HWHEEL = InterceptionMouseState.INTERCEPTION_MOUSE_HWHEEL,
+		MouseWheel = MouseState.MouseWheel,
+		MouseHWheel = MouseState.MouseHWheel,
 
-		INTERCEPTION_FILTER_MOUSE_MOVE = 0x1000
+		MouseMove = 0x1000
 	};
 
-	public enum InterceptionMouseFlag
+	public enum MouseFlag
 	{
-		INTERCEPTION_MOUSE_MOVE_RELATIVE = 0x000,
-		INTERCEPTION_MOUSE_MOVE_ABSOLUTE = 0x001,
-		INTERCEPTION_MOUSE_VIRTUAL_DESKTOP = 0x002,
-		INTERCEPTION_MOUSE_ATTRIBUTES_CHANGED = 0x004,
-		INTERCEPTION_MOUSE_MOVE_NOCOALESCE = 0x008,
-		INTERCEPTION_MOUSE_TERMSRV_SRC_SHADOW = 0x100
+		Relative = 0x000,
+		Absolute = 0x001,
+		VirtualDesktop = 0x002,
+		AttributesChanged = 0x004,
+		Move_NoCoalesce = 0x008,
+		TermSrv_Src_Shadow = 0x100
 	};
 
-	public struct InterceptionMouseStroke
+	public struct MouseStroke
 	{
 		public ushort state;
 		public ushort flags;
@@ -104,18 +104,42 @@ public class Interception
 		public int x;
 		public int y;
 		public uint information;
+
+		public static implicit operator Stroke(MouseStroke d)
+		{
+			byte[] strokeBytes = getBytes(d);
+			return ByteArrayToStructure<Stroke>(strokeBytes);
+		}
 	};
 
-	public struct InterceptionKeyStroke
+	public struct KeyStroke
 	{
 		public ushort code;
 		public ushort state;
 		public uint information;
+
+		public static implicit operator Stroke(KeyStroke d)
+		{
+			byte[] strokeBytes = getBytes(d);
+			return ByteArrayToStructure<Stroke>(strokeBytes);
+		}
 	};
 
-	public unsafe struct InterceptionStroke
+	public unsafe struct Stroke
 	{
 		public fixed byte data[18];
+
+		public static implicit operator MouseStroke(Stroke d)
+		{
+			byte[] strokeBytes = getBytes(d);
+			return ByteArrayToStructure<MouseStroke>(strokeBytes);
+		}
+
+		public static implicit operator KeyStroke(Stroke d)
+		{
+			byte[] strokeBytes = getBytes(d);
+			return ByteArrayToStructure<KeyStroke>(strokeBytes);
+		}
 	};
 
 	[DllImport("interception.dll", CallingConvention = CallingConvention.Cdecl)]
@@ -146,7 +170,7 @@ public class Interception
 	public static extern int interception_send(IntPtr context, int device, byte[] stroke, uint nstroke);
 
 	[DllImport("interception.dll", CallingConvention = CallingConvention.Cdecl)]
-	public static extern int interception_receive(IntPtr context, int device, ref InterceptionStroke stroke, uint nstroke);
+	public static extern int interception_receive(IntPtr context, int device, ref Stroke stroke, uint nstroke);
 
 	[DllImport("interception.dll", CallingConvention = CallingConvention.Cdecl)]
 	public static extern uint interception_get_hardware_id(IntPtr context, int device, IntPtr hardware_id_buffer, uint buffer_size);
@@ -159,4 +183,24 @@ public class Interception
 
 	[DllImport("interception.dll", CallingConvention = CallingConvention.Cdecl)]
 	public static extern int interception_is_mouse(int device);
+
+	private static unsafe T ByteArrayToStructure<T>(byte[] bytes) where T : struct
+	{
+		fixed (byte* ptr = &bytes[0])
+		{
+			return (T)Marshal.PtrToStructure((IntPtr)ptr, typeof(T));
+		}
+	}
+
+	public static byte[] getBytes(object str)
+	{
+		int size = Marshal.SizeOf(str);
+		byte[] arr = new byte[size];
+
+		IntPtr ptr = Marshal.AllocHGlobal(size);
+		Marshal.StructureToPtr(str, ptr, true);
+		Marshal.Copy(ptr, arr, 0, size);
+		Marshal.FreeHGlobal(ptr);
+		return arr;
+	}
 }
